@@ -11,7 +11,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<AuthCallbackData>
 ) {
-  const url = `${process.env.BASE_API_URL}/auth/github/callback?code=${req.query.code}`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/github/callback?code=${req.query.code}`;
 
   fetch(url)
     .then((response) => response.json())

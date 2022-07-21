@@ -58,7 +58,7 @@ export default function Nav() {
         {!user && (
           <a
             style={{ marginLeft: "1rem" }}
-            href={`${process.env.BASE_API_URL}/auth/github`}
+            href={`${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/github`}
           >
             Login with Github
           </a>
