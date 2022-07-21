@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         >
           <h1>
-            <a href="/">FeedMe</a>
+            <Link href="/">FeedMe</Link>
           </h1>
 
           <div style={{ display: "flex", alignItems: "center" }}>
