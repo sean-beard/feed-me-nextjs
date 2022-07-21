@@ -10,7 +10,7 @@ export default function handler(
   _req: NextApiRequest,
   res: NextApiResponse<LogoutData>
 ) {
-  fetch(`${process.env.BASE_API_URL}/auth/logout`)
+  fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/logout`)
     .then((response) => response.json())
     .then((data) => {
       res.status(200).json(data);
