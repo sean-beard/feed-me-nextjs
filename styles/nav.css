@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+ul {
+  display: inline;
+}
+
+h1 {
+  font-family: Pacifico, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  margin: auto 1rem;
+}
+
+.btn {
+  background-color: #1565c0;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: white;
+  color: #1565c0;
+}

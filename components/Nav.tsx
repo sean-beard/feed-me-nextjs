@@ -36,6 +36,7 @@ export default function Nav() {
         justifyContent: "space-between",
         alignItems: "center",
       }}
+      className="indigo darken-4"
     >
       <h1>
         <Link href="/">FeedMe</Link>
@@ -50,7 +51,11 @@ export default function Nav() {
               </li>
             </ul>
 
-            <button style={{ marginLeft: "1rem" }} onClick={handleLogout}>
+            <button
+              className="btn"
+              style={{ marginLeft: "1rem" }}
+              onClick={handleLogout}
+            >
               LOGOUT
             </button>
           </>
