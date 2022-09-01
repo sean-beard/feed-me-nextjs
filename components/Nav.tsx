@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { AppContext } from "pages/_app";
 import { LogoutData } from "pages/api/logout";
+import { useRouter } from "next/router";
 
 export default function Nav() {
   const { user, setUser } = useContext(AppContext);
+  const router = useRouter();
 
   const handleLogout = (event: React.FormEvent) => {
     event.preventDefault();
@@ -15,6 +17,7 @@ export default function Nav() {
         if (data.status === 200) {
           setUser(null);
           localStorage.removeItem("state");
+          router.push("/");
         }
       });
   };
