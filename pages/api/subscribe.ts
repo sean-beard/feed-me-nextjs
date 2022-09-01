@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { validateAuthentication } from "utils/auth";
 
 type SubscribeData = {
   status: number;
@@ -11,11 +12,7 @@ export default function handler(
 ) {
   const body = JSON.parse(req.body);
 
-  if (!body.authToken) {
-    res
-      .status(400)
-      .json({ status: 400, message: "Must provide an auth token." });
-  }
+  validateAuthentication(body, res);
 
   if (!body.url) {
     res
