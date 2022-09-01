@@ -30,6 +30,7 @@ const AuthCallback: NextPage = () => {
   useEffect(() => {
     if (data?.user) {
       setUser(data.user);
+      localStorage.setItem("state", JSON.stringify({ user: data.user }));
       router.push("/");
     }
   }, [data, router, setUser]);

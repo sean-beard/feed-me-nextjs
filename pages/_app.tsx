@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -21,6 +21,17 @@ export const AppContext = React.createContext<AppContextType>({
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const existingState = window.localStorage.getItem("state");
+
+    if (!existingState) {
+      return;
+    }
+
+    const localStorageState = JSON.parse(existingState);
+    setUser(localStorageState.user);
+  }, []);
 
   return (
     <AppContext.Provider value={{ user, setUser }}>

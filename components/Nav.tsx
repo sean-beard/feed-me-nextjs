@@ -20,6 +20,7 @@ export default function Nav() {
   useEffect(() => {
     if (data?.status === 200) {
       setUser(null);
+      localStorage.removeItem("state");
     }
   });
 

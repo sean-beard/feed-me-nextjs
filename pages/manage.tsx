@@ -1,7 +1,14 @@
 import type { NextPage } from "next";
+import { SubscriptionForm } from "components/SubscriptionForm";
+import { SubscriptionList } from "components/SubscriptionList";
 
 const Manage: NextPage = () => {
-  return <div>This is the manage feeds page.</div>;
+  return (
+    <>
+      <SubscriptionForm />
+      <SubscriptionList />
+    </>
+  );
 };
 
 export default Manage;
