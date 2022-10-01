@@ -22,6 +22,10 @@ export const SubscriptionList = () => {
       {subscriptionError && <p className="error">{subscriptionError}</p>}
       {subscriptionsLoading && <p>Loading...</p>}
 
+      {subscriptions.length === 0 &&
+        !subscriptionsLoading &&
+        !subscriptionError && <p>No subscriptions yet</p>}
+
       {subscriptions.length > 0 && (
         <ul>
           {subscriptions.map((sub) => (
