@@ -45,18 +45,28 @@ export const SubscriptionForm = () => {
   };
 
   return (
-    <div>
-      {isLoading && <h2>Loading...</h2>}
-      {errorMessage && <h2>{errorMessage}</h2>}
-      {successMessage && <h2>{successMessage}</h2>}
+    <section className="manage-feeds-section">
+      <h2>Subscribe to a feed</h2>
+
+      {isLoading && <h3>Loading...</h3>}
+      {errorMessage && <h3 className="error">{errorMessage}</h3>}
+      {successMessage && <h3 className="success">{successMessage}</h3>}
 
       <form ref={formRef} onSubmit={handleSubscription}>
-        <label htmlFor="feedUrl">Subscribe to a feed</label>
-        <br />
-        <input id="feedUrl" name="feedUrl" type="text" />
-        <br />
-        <button type="submit">Subscribe</button>
+        <div className="input-field">
+          <input
+            id="feedUrl"
+            name="feedUrl"
+            className="input-field"
+            type="text"
+          />
+          <label htmlFor="feedUrl">Enter the RSS feed URL</label>
+        </div>
+
+        <button type="submit" className="btn">
+          Subscribe
+        </button>
       </form>
-    </div>
+    </section>
   );
 };
