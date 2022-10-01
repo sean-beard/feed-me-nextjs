@@ -1,5 +1,5 @@
 import { AppContext } from "pages/_app";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 export interface Subscription {
   id: number;
@@ -15,7 +15,7 @@ export const useSubscriptions = () => {
   const [subscriptionsLoading, setSubscriptionsLoading] = useState(false);
   const [subscriptionError, setSubscriptionError] = useState("");
 
-  useEffect(() => {
+  const fetchSubscriptions = useCallback(() => {
     setSubscriptionError("");
 
     if (!user?.token) {
@@ -45,10 +45,15 @@ export const useSubscriptions = () => {
       });
   }, [user?.token]);
 
+  useEffect(() => {
+    fetchSubscriptions();
+  }, [fetchSubscriptions]);
+
   return {
     subscriptions,
     subscriptionsLoading,
     subscriptionError,
+    fetchSubscriptions,
     setSubscriptions,
   };
 };

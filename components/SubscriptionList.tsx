@@ -1,6 +1,6 @@
-import React from "react";
-import { useSubscriptions } from "hooks/useSubscriptions";
+import React, { useContext } from "react";
 import { useUnsubscribe } from "hooks/useUnsubscribe";
+import { SubscriptionContext } from "pages/manage";
 
 export const SubscriptionList = () => {
   const {
@@ -8,7 +8,7 @@ export const SubscriptionList = () => {
     subscriptionsLoading,
     subscriptionError,
     setSubscriptions,
-  } = useSubscriptions();
+  } = useContext(SubscriptionContext);
 
   const { handleUnsubscribe, idUnsubscribing } = useUnsubscribe({
     subscriptions,
