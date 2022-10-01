@@ -9,12 +9,10 @@ export const SubscriptionForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubscription = (event: React.FormEvent) => {
     event.preventDefault();
-    setSuccessMessage("");
     setErrorMessage("");
 
     if (!formRef.current) {
@@ -37,7 +35,7 @@ export const SubscriptionForm = () => {
           return;
         }
 
-        setSuccessMessage(message);
+        formRef.current?.reset();
         fetchSubscriptions();
       })
       .catch((error) => {
@@ -53,7 +51,6 @@ export const SubscriptionForm = () => {
       <h2>Subscribe to a feed</h2>
 
       {errorMessage && <h3 className="error">{errorMessage}</h3>}
-      {successMessage && <h3 className="success">{successMessage}</h3>}
 
       <form ref={formRef} onSubmit={handleSubscription}>
         <div className="input-field">
