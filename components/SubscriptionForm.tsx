@@ -52,7 +52,6 @@ export const SubscriptionForm = () => {
     <section className="manage-feeds-section">
       <h2>Subscribe to a feed</h2>
 
-      {isLoading && <h3>Loading...</h3>}
       {errorMessage && <h3 className="error">{errorMessage}</h3>}
       {successMessage && <h3 className="success">{successMessage}</h3>}
 
@@ -68,7 +67,7 @@ export const SubscriptionForm = () => {
         </div>
 
         <button type="submit" className="btn">
-          Subscribe
+          {isLoading ? "Subscribing" : "Subscribe"}
         </button>
       </form>
     </section>
