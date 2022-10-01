@@ -1,17 +1,18 @@
 import { useContext, useRef, useState } from "react";
 import { AppContext } from "pages/_app";
+import { SubscriptionContext } from "pages/manage";
 
 export const SubscriptionForm = () => {
   const { user } = useContext(AppContext);
+  const { fetchSubscriptions } = useContext(SubscriptionContext);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubscription = (event: React.FormEvent) => {
     event.preventDefault();
-    setSuccessMessage("");
     setErrorMessage("");
 
     if (!formRef.current) {
@@ -34,7 +35,8 @@ export const SubscriptionForm = () => {
           return;
         }
 
-        setSuccessMessage(message);
+        formRef.current?.reset();
+        fetchSubscriptions();
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -48,9 +50,7 @@ export const SubscriptionForm = () => {
     <section className="manage-feeds-section">
       <h2>Subscribe to a feed</h2>
 
-      {isLoading && <h3>Loading...</h3>}
       {errorMessage && <h3 className="error">{errorMessage}</h3>}
-      {successMessage && <h3 className="success">{successMessage}</h3>}
 
       <form ref={formRef} onSubmit={handleSubscription}>
         <div className="input-field">
@@ -64,7 +64,7 @@ export const SubscriptionForm = () => {
         </div>
 
         <button type="submit" className="btn">
-          Subscribe
+          {isLoading ? "Subscribing" : "Subscribe"}
         </button>
       </form>
     </section>
