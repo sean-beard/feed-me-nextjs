@@ -1,8 +1,11 @@
 import { useContext, useRef, useState } from "react";
 import { AppContext } from "pages/_app";
+import { SubscriptionContext } from "pages/manage";
 
 export const SubscriptionForm = () => {
   const { user } = useContext(AppContext);
+  const { fetchSubscriptions } = useContext(SubscriptionContext);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +38,7 @@ export const SubscriptionForm = () => {
         }
 
         setSuccessMessage(message);
+        fetchSubscriptions();
       })
       .catch((error) => {
         setErrorMessage(error.message);
