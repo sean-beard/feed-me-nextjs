@@ -1,32 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { AppContext } from "pages/_app";
-import useSWR from "swr";
 import { LogoutData } from "pages/api/logout";
-
-const fetcher = async (url: string): Promise<LogoutData> => {
-  const res = await fetch(url);
-  const data = await res.json();
-
-  return data;
-};
+import { useRouter } from "next/router";
 
 export default function Nav() {
   const { user, setUser } = useContext(AppContext);
-  const [shouldLogout, setShouldLogout] = useState(false);
-
-  const { data } = useSWR(() => (shouldLogout ? "/api/logout" : null), fetcher);
-
-  useEffect(() => {
-    if (data?.status === 200) {
-      setUser(null);
-      localStorage.removeItem("state");
-    }
-  });
+  const router = useRouter();
 
   const handleLogout = (event: React.FormEvent) => {
     event.preventDefault();
-    setShouldLogout(true);
+
+    fetch("/api/logout")
+      .then((response) => response.json())
+      .then((data: LogoutData) => {
+        if (data.status === 200) {
+          setUser(null);
+          localStorage.removeItem("state");
+          router.push("/");
+        }
+      });
   };
 
   return (
