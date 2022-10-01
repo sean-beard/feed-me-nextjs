@@ -1,8 +1,19 @@
+import React from "react";
 import { useSubscriptions } from "hooks/useSubscriptions";
+import { useUnsubscribe } from "hooks/useUnsubscribe";
 
 export const SubscriptionList = () => {
-  const { subscriptions, subscriptionsLoading, subscriptionError } =
-    useSubscriptions();
+  const {
+    subscriptions,
+    subscriptionsLoading,
+    subscriptionError,
+    setSubscriptions,
+  } = useSubscriptions();
+
+  const { handleUnsubscribe, idUnsubscribing } = useUnsubscribe({
+    subscriptions,
+    setSubscriptions,
+  });
 
   return (
     <section className="manage-feeds-section">
@@ -16,8 +27,14 @@ export const SubscriptionList = () => {
           {subscriptions.map((sub) => (
             <li key={sub.id} className="unsubscribe-row">
               <p className="feed">{sub.feedName}</p>{" "}
-              <button type="button" className="btn unsubscribe-btn">
-                Unsubscribe
+              <button
+                type="button"
+                className="btn unsubscribe-btn"
+                onClick={() => {
+                  handleUnsubscribe(sub.id);
+                }}
+              >
+                {idUnsubscribing === sub.id ? "Unsubscribing" : "Unsubscribe"}
               </button>
             </li>
           ))}

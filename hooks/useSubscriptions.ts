@@ -1,7 +1,7 @@
 import { AppContext } from "pages/_app";
 import { useContext, useEffect, useState } from "react";
 
-interface Subscription {
+export interface Subscription {
   id: number;
   feedName: string;
 }
@@ -49,5 +49,6 @@ export const useSubscriptions = () => {
     subscriptions,
     subscriptionsLoading,
     subscriptionError,
+    setSubscriptions,
   };
 };
