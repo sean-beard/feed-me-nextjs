@@ -20,7 +20,7 @@ export const SubscriptionList = () => {
       <h2>Your subscriptions</h2>
 
       {subscriptionError && <p className="error">{subscriptionError}</p>}
-      {subscriptionsLoading && <p>Loading...</p>}
+      {subscriptions.length === 0 && subscriptionsLoading && <p>Loading...</p>}
 
       {subscriptions.length === 0 &&
         !subscriptionsLoading &&
