@@ -22,21 +22,21 @@ export const SubscriptionList = () => {
 
       {subscriptionError && <p className="error">{subscriptionError}</p>}
       {subscriptions.length === 0 && subscriptionsLoading && (
-        <>
-          <ContentLoader width="450" height="60" style={{ margin: "1rem 0" }}>
+        <div className="skeleton">
+          <ContentLoader width="100%" height="60" style={{ margin: "1rem 0" }}>
             <rect x="0" y="0" width="100%" height="100%" />
           </ContentLoader>
           <ContentLoader
-            width="450"
+            width="100%"
             height="60"
             style={{ marginBottom: "1rem" }}
           >
             <rect x="0" y="0" width="100%" height="100%" />
           </ContentLoader>
-          <ContentLoader width="450" height="60">
+          <ContentLoader width="100%" height="60">
             <rect x="0" y="0" width="100%" height="100%" />
           </ContentLoader>
-        </>
+        </div>
       )}
 
       {subscriptions.length === 0 &&
