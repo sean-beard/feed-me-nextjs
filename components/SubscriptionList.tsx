@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import ContentLoader from "react-content-loader";
 import { useUnsubscribe } from "hooks/useUnsubscribe";
 import { SubscriptionContext } from "pages/manage";
 
@@ -20,7 +21,23 @@ export const SubscriptionList = () => {
       <h2>Your subscriptions</h2>
 
       {subscriptionError && <p className="error">{subscriptionError}</p>}
-      {subscriptions.length === 0 && subscriptionsLoading && <p>Loading...</p>}
+      {subscriptions.length === 0 && subscriptionsLoading && (
+        <>
+          <ContentLoader width="450" height="60" style={{ margin: "1rem 0" }}>
+            <rect x="0" y="0" width="100%" height="100%" />
+          </ContentLoader>
+          <ContentLoader
+            width="450"
+            height="60"
+            style={{ marginBottom: "1rem" }}
+          >
+            <rect x="0" y="0" width="100%" height="100%" />
+          </ContentLoader>
+          <ContentLoader width="450" height="60">
+            <rect x="0" y="0" width="100%" height="100%" />
+          </ContentLoader>
+        </>
+      )}
 
       {subscriptions.length === 0 &&
         !subscriptionsLoading &&
