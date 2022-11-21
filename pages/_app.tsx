@@ -49,16 +49,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></Script>
 
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div id="app">
         <Nav />
 
-        <main style={{ height: "100%", padding: "2rem" }}>
+        <main>
           <Component {...pageProps} />
         </main>
 

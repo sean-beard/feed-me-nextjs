@@ -2,6 +2,11 @@ h2 {
   font-size: 2rem;
 }
 
+main {
+  padding: 2rem;
+  flex: 1;
+}
+
 footer {
   padding-top: 2rem;
   padding-bottom: 0.5rem;
