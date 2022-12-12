@@ -1,13 +1,8 @@
 import { NextApiResponse } from "next/types";
 
-interface HttpResponse {
-  status: number;
-  message: string;
-}
-
 export const validateAuthentication = (
   body: any,
-  res: NextApiResponse<HttpResponse>
+  res: NextApiResponse
 ): void => {
   if (!body.authToken) {
     res

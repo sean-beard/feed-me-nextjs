@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "styles/feed.css";
 import "styles/globals.css";
 import "styles/nav.css";
 import "styles/subscription.css";
@@ -46,19 +47,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
       </Head>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></Script>
 
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div id="app">
         <Nav />
 
-        <main style={{ height: "100%", padding: "2rem" }}>
+        <main>
           <Component {...pageProps} />
         </main>
 
