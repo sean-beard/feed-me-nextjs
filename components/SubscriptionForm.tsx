@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { AppContext } from "pages/_app";
-import { SubscriptionContext } from "pages/manage";
+import { SubscriptionContext } from "hooks/useSubscriptions";
 
 export const SubscriptionForm = () => {
   const { user } = useContext(AppContext);
