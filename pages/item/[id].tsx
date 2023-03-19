@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { FeedItem } from "pages/api/feed";
+import { get } from "utils/api";
 
 interface Props {
   item: FeedItem | null;
@@ -23,18 +24,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   }
 
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/item/${itemId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const data = await response.json();
+    const data = await get<{ item: FeedItem }>({
+      url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/item/${itemId}`,
+      token,
+    });
 
     return { props: { item: data.item, error: null } };
   } catch (_error) {
