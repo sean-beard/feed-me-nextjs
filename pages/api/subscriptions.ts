@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { get } from "utils/api";
 import { validateAuthentication } from "utils/auth";
 
 type SubscriptionsData = {
@@ -14,14 +15,10 @@ export default function handler(
 
   validateAuthentication(body, res);
 
-  fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/subscription`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${body.authToken}`,
-    },
+  get<SubscriptionsData>({
+    url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/subscription`,
+    token: body.authToken,
   })
-    .then((response) => response.json())
     .then((data) => {
       res.status(200).json(data);
     })

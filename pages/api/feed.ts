@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { get } from "utils/api";
 import { validateAuthentication } from "utils/auth";
 
 export interface FeedItem {
@@ -29,15 +30,11 @@ export default function handler(
 
   validateAuthentication(body, res);
 
-  fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/feed`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${body.authToken}`,
-    },
+  get<GetFeedResponse>({
+    url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/feed`,
+    token: body.authToken,
   })
-    .then((response) => response.json())
-    .then((data: GetFeedResponse) => {
+    .then((data) => {
       res.status(data.status).json(data.feed);
     })
     .catch((error) => {

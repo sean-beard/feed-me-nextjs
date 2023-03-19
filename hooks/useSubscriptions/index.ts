@@ -1,10 +1,20 @@
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { AppContext } from "pages/_app";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { Subscription, SubscriptionContextType } from "./types";
 
-export interface Subscription {
-  id: number;
-  feedName: string;
-}
+export const SubscriptionContext = createContext<SubscriptionContextType>({
+  subscriptions: [],
+  subscriptionsLoading: false,
+  subscriptionError: "",
+  setSubscriptions: () => {},
+  fetchSubscriptions: () => {},
+});
 
 const ERROR_MESSAGE =
   "Oops! There was an error loading your subscriptions. Please try again later.";

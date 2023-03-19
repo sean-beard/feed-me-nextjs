@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ContentLoader from "react-content-loader";
 import { useUnsubscribe } from "hooks/useUnsubscribe";
-import { SubscriptionContext } from "pages/manage";
+import { SubscriptionContext } from "hooks/useSubscriptions";
 
 export const SubscriptionList = () => {
   const {

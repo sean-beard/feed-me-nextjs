@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import Cookies from "js-cookie";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { AppContext } from "pages/_app";
@@ -31,6 +32,8 @@ const AuthCallback: NextPage = () => {
     if (data?.user) {
       setUser(data.user);
       localStorage.setItem("state", JSON.stringify({ user: data.user }));
+      // TODO: set expiration config
+      Cookies.set("token", data.user?.token);
       router.push("/");
     }
   }, [data, router, setUser]);
