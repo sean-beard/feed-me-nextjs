@@ -56,6 +56,10 @@
   min-height: 4.5rem;
 }
 
+.card-link {
+  width: 100%;
+}
+
 .card-panel {
   display: block;
   cursor: pointer;
