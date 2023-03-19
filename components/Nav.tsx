@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { AppContext } from "pages/_app";
 import { LogoutData } from "pages/api/logout";
@@ -17,6 +18,7 @@ export default function Nav() {
         if (data.status === 200) {
           setUser(null);
           localStorage.removeItem("state");
+          Cookies.remove("token");
           router.push("/");
         }
       });
